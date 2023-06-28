@@ -77,7 +77,7 @@ public class MemoryLimiter {
     }
 
     /**
-     * Locks to prevent both acquires and releases.
+     * 用于防止获取和释放的锁定
      */
     private void fullyLock() {
         acquireLock.lock();
@@ -85,7 +85,7 @@ public class MemoryLimiter {
     }
 
     /**
-     * Unlocks to allow both acquires and releases.
+     * 解锁以允许获取和释放。
      */
     private void fullyUnlock() {
         releaseLock.unlock();
@@ -173,6 +173,8 @@ public class MemoryLimiter {
         if (null == e) {
             return;
         }
+
+        //memory.sum()  注意这个地方必须要这样子调用 每次获取最新数据
         if (memory.sum() == 0) {
             return;
         }

@@ -5,12 +5,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Can completely solve the OOM problem caused by {@link java.util.concurrent.LinkedBlockingQueue},
- * does not depend on {@link java.lang.instrument.Instrumentation} and is easier to use than
- * {@link MemoryLimitedLinkedBlockingQueue}.
+ * 可以完全解决由{@link java.util.concurrent.LinkedBlockingQueue}引起的OOM问题
  *
  * @author chill
- * @see <a href="https://github.com/apache/incubator-shenyu/blob/master/shenyu-common/src/main/java/org/apache/shenyu/common/concurrent/MemorySafeLinkedBlockingQueue.java">MemorySafeLinkedBlockingQueue</a>
  */
 public class MemorySafeLinkedBlockingQueue<E> extends LinkedBlockingQueue<E> {
 
@@ -36,27 +33,27 @@ public class MemorySafeLinkedBlockingQueue<E> extends LinkedBlockingQueue<E> {
     }
 
     /**
-     * set the max free memory.
+     * 设置最大可用内存。
      *
-     * @param maxFreeMemory the max free memory
+     * @param maxFreeMemory 最大可用内存
      */
     public void setMaxFreeMemory(final int maxFreeMemory) {
         this.maxFreeMemory = maxFreeMemory;
     }
 
     /**
-     * get the max free memory.
+     * 获取最大可用内存
      *
-     * @return the max free memory limit
+     * @return 最大可用内存
      */
     public int getMaxFreeMemory() {
         return maxFreeMemory;
     }
 
     /**
-     * determine if there is any remaining free memory.
+     * 确定是否有剩余可用内存。
      *
-     * @return true if has free memory
+     * @return 如果具有可用内存，则为 true
      */
     public boolean hasRemainedMemory() {
         return MemoryLimitCalculator.maxAvailable() > maxFreeMemory;
