@@ -267,7 +267,7 @@ public abstract class AuthDefaultRequest implements AuthRequest {
      * @param encode        是否 encode 编码
      * @param defaultScopes 默认的 scope， 当客户端没有配置 {@code scopes} 时启用
      * @return String
-     * @since 1.16.7
+     * @since 1.0
      */
     protected String getScopes(String separator, boolean encode, List<String> defaultScopes) {
         List<String> scopes = config.getScopes();

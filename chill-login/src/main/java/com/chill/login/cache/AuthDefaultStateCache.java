@@ -4,7 +4,7 @@ package com.chill.login.cache;
  * 默认的state缓存实现
  *
  * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
- * @since 1.10.0
+ * @since 1.0
  */
 public enum AuthDefaultStateCache implements AuthStateCache {
 

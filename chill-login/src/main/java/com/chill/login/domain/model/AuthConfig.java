@@ -58,7 +58,7 @@ public class AuthConfig {
     /**
      * 企业微信，授权方的网页应用ID
      *
-     * @since 1.10.0
+     * @since 1.0
      */
     private String agentId;
 

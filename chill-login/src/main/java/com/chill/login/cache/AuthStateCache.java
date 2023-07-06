@@ -6,7 +6,7 @@ package com.chill.login.cache;
  * </p>
  *
  * @author yangkai.shen
- * @since 1.10.0
+ * @since 1.0
  */
 public interface AuthStateCache {
     /**

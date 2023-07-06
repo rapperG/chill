@@ -321,7 +321,7 @@ public enum AuthDefaultSource implements AuthSource {
     /**
      * 企业微信二维码登录
      *
-     * @since 1.10.0
+     * @since 1.0
      */
     WECHAT_ENTERPRISE {
         @Override
@@ -385,7 +385,7 @@ public enum AuthDefaultSource implements AuthSource {
     /**
      * Twitter
      *
-     * @since 1.13.0
+     * @since 1.0
      */
     TWITTER {
         @Override

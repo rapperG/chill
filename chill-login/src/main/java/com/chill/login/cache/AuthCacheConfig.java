@@ -4,7 +4,7 @@ package com.chill.login.cache;
  * AuthCache配置类
  *
  * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
- * @since 1.10.0
+ * @since 1.0
  */
 public class AuthCacheConfig {
 

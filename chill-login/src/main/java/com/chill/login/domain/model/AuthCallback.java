@@ -34,21 +34,21 @@ public class AuthCallback implements Serializable {
     /**
      * 华为授权登录接受code的参数名
      *
-     * @since 1.10.0
+     * @since 1.0
      */
     private String authorization_code;
 
     /**
      * Twitter回调后返回的oauth_token
      *
-     * @since 1.13.0
+     * @since 1.0
      */
     private String oauth_token;
 
     /**
      * Twitter回调后返回的oauth_verifier
      *
-     * @since 1.13.0
+     * @since 1.0
      */
     private String oauth_verifier;
 
