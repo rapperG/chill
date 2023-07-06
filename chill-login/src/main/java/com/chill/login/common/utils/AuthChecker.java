@@ -12,6 +12,8 @@ import com.chill.login.domain.model.AuthConfig;
 
 /**
  * 授权配置类的校验器
+ *
+ * @author chill
  */
 public class AuthChecker {
 
@@ -21,7 +23,6 @@ public class AuthChecker {
      * @param config config
      * @param source source
      * @return true or false
-     * @since 1.6.1-beta
      */
     public static boolean isSupportedAuth(AuthConfig config, AuthSource source) {
         boolean isSupported = StringUtils.isNotEmpty(config.getClientId()) && StringUtils.isNotEmpty(config.getClientSecret()) && StringUtils.isNotEmpty(config.getRedirectUri());
@@ -41,7 +42,6 @@ public class AuthChecker {
      *
      * @param config config
      * @param source source
-     * @since 1.6.1-beta
      */
     public static void checkConfig(AuthConfig config, AuthSource source) {
         String redirectUri = config.getRedirectUri();
@@ -63,7 +63,6 @@ public class AuthChecker {
      *
      * @param source   当前授权平台
      * @param callback 从第三方授权回调回来时传入的参数集合
-     * @since 1.8.0
      */
     public static void checkCode(AuthSource source, AuthCallback callback) {
         // 推特平台不支持回调 code 和 state

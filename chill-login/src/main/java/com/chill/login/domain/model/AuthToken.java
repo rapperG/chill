@@ -7,8 +7,7 @@ import java.io.Serializable;
 /**
  * 授权所需的token
  *
- * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
- * @since 1.8
+ * @author chill
  */
 @Getter
 @Setter
@@ -31,12 +30,6 @@ public class AuthToken implements Serializable {
     private String scope;
     private String tokenType;
     private String idToken;
-
-    /**
-     * 小米附带属性
-     */
-    private String macAlgorithm;
-    private String macKey;
 
     /**
      * 企业微信附带属性

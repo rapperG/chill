@@ -14,10 +14,10 @@ public class MemoryLimitedLinkedBlockingQueueTest {
         ByteBuddyAgent.install();
         final Instrumentation instrumentation = ByteBuddyAgent.getInstrumentation();
         MemoryLimitedLinkedBlockingQueue<Object> queue = new MemoryLimitedLinkedBlockingQueue<>(1, instrumentation);
-        //an object needs more than 1 byte of space, so it will fail here
+        //一个对象需要超过 1 个字节的空间，所以它会在这里失败
         assertThat(queue.offer(new Object()), is(false));
 
-        //will success
+        //成功
         queue.setMemoryLimit(Integer.MAX_VALUE);
         assertThat(queue.offer(new Object()), is(true));
     }
