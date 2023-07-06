@@ -1,2 +1,1 @@
 # chill
-chill login pay
