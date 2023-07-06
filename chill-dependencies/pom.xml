@@ -6,7 +6,7 @@
 
   <groupId>com.chill</groupId>
   <artifactId>chill-dependencies</artifactId>
-  <version>1.0</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <name>chill-dependencies</name>
   <description>chill dependencies</description>
@@ -100,11 +100,11 @@
       </dependency>
 
       <!-- solon -->
-      <dependency>
-        <groupId>org.noear</groupId>
-        <artifactId>solon</artifactId>
-        <version>${solon.version}</version>
-      </dependency>
+<!--      <dependency>-->
+<!--        <groupId>org.noear</groupId>-->
+<!--        <artifactId>solon</artifactId>-->
+<!--        <version>${solon.version}</version>-->
+<!--      </dependency>-->
 
       <!-- snack3 -->
       <dependency>
