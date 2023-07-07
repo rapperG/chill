@@ -1,15 +1,17 @@
 
 package com.chill.token.exception;
 
+import com.chill.token.exception.basic.TokenException;
+
 /**
  * 一个异常：代表 API 已被禁用
  *
  * <p> 一般在 API 不合适调用的时候抛出，例如在集成 jwt 模块后调用数据持久化相关方法 </p>
  *
  * @author chill
- * @since 1.28.0
+ * @since 1.0
  */
-public class ApiDisabledException extends SaTokenException {
+public class ApiDisabledException extends TokenException {
 
     /**
      * 序列化版本号

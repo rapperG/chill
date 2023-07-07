@@ -1,13 +1,15 @@
 
 package com.chill.token.exception;
 
+import com.chill.token.exception.basic.TokenException;
+
 /**
  * 一个异常：代表组件或方法未被提供有效的实现
  *
  * @author chill
- * @since 1.33.0
+ * @since 1.0
  */
-public class NotImplException extends SaTokenException {
+public class NotImplException extends TokenException {
 
     /**
      * 序列化版本号

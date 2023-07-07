@@ -1,15 +1,16 @@
 
 package com.chill.token.exception;
 
-import com.chill.token.stp.StpUtil;
+import com.chill.token.exception.basic.TokenException;
+import com.chill.token.stp.AuthLoginUtil;
 
 /**
  * 一个异常：代表会话未能通过角色认证校验
  *
  * @author chill
- * @since 1.10.0
+ * @since 1.0
  */
-public class NotRoleException extends SaTokenException {
+public class NotRoleException extends TokenException {
 
     /**
      * 序列化版本号
@@ -43,7 +44,7 @@ public class NotRoleException extends SaTokenException {
     }
 
     public NotRoleException(String role) {
-        this(role, StpUtil.stpLogic.loginType);
+        this(role, AuthLoginUtil.authLoginLogic.loginType);
     }
 
     public NotRoleException(String role, String loginType) {

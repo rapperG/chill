@@ -1,13 +1,15 @@
 
 package com.chill.token.exception;
 
+import com.chill.token.exception.basic.TokenException;
+
 /**
  * 一个异常：代表会话未能通过 Http Basic 认证校验
  *
  * @author chill
- * @since 1.26.0
+ * @since 1.0
  */
-public class NotBasicAuthException extends SaTokenException {
+public class NotBasicAuthException extends TokenException {
 
     /**
      * 序列化版本号

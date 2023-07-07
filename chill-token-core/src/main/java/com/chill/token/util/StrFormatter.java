@@ -8,8 +8,8 @@ package com.chill.token.util;
  * https://github.com/dromara/hutool/blob/v5-master/hutool-core/src/main/java/cn/hutool/core/text/StrFormatter.java
  * </p>
  *
- * @author Looly
- * @since 1.33.0
+ * @author chill
+ * @since 1.0
  */
 public class StrFormatter {
 
@@ -50,10 +50,10 @@ public class StrFormatter {
      * @param placeHolder 占位符，例如{}
      * @param argArray    参数列表
      * @return 结果
-     * @since 1.33.0
+     * @since 1.0
      */
     public static String formatWith(String strPattern, String placeHolder, Object... argArray) {
-        if (SaFoxUtil.isEmpty(strPattern) || SaFoxUtil.isEmpty(placeHolder) || SaFoxUtil.isEmpty(argArray)) {
+        if (ChillFoxUtil.isEmpty(strPattern) || ChillFoxUtil.isEmpty(placeHolder) || ChillFoxUtil.isEmpty(argArray)) {
             return strPattern;
         }
         final int strPatternLength = strPattern.length();

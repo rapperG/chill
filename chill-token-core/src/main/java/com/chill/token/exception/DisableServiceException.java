@@ -1,13 +1,15 @@
 
 package com.chill.token.exception;
 
+import com.chill.token.exception.basic.TokenException;
+
 /**
  * 一个异常：代表指定账号的指定服务已被封禁
  *
  * @author chill
- * @since 1.31.0
+ * @since 1.0
  */
-public class DisableServiceException extends SaTokenException {
+public class DisableServiceException extends TokenException {
 
     /**
      * 序列化版本号
@@ -15,7 +17,7 @@ public class DisableServiceException extends SaTokenException {
     private static final long serialVersionUID = 6806129545290130143L;
 
     /**
-     * 异常标记值（已更改为 SaTokenConsts.DEFAULT_DISABLE_LEVEL）
+     * 异常标记值（已更改为 ChillTokenConstants.DEFAULT_DISABLE_LEVEL）
      */
     @Deprecated
     public static final String BE_VALUE = "disable";

@@ -1,13 +1,15 @@
 
 package com.chill.token.exception;
 
+import com.chill.token.exception.basic.TokenException;
+
 /**
  * 一个异常：代表会话未能通过二级认证校验
  *
  * @author chill
- * @since 1.21.0
+ * @since 1.0
  */
-public class NotSafeException extends SaTokenException {
+public class NotSafeException extends TokenException {
 
     /**
      * 序列化版本号

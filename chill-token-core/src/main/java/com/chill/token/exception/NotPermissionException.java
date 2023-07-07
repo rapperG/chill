@@ -1,15 +1,16 @@
 
 package com.chill.token.exception;
 
-import com.chill.token.stp.StpUtil;
+import com.chill.token.exception.basic.TokenException;
+import com.chill.token.stp.AuthLoginUtil;
 
 /**
  * 一个异常：代表会话未能通过权限认证校验
  *
  * @author chill
- * @since 1.10.0
+ * @since 1.0
  */
-public class NotPermissionException extends SaTokenException {
+public class NotPermissionException extends TokenException {
 
     /**
      * 序列化版本号
@@ -43,7 +44,7 @@ public class NotPermissionException extends SaTokenException {
     }
 
     public NotPermissionException(String permission) {
-        this(permission, StpUtil.stpLogic.loginType);
+        this(permission, AuthLoginUtil.authLoginLogic.loginType);
     }
 
     public NotPermissionException(String permission, String loginType) {
@@ -57,6 +58,7 @@ public class NotPermissionException extends SaTokenException {
      *
      * @return 获得权限码
      */
+    @Override
     @Deprecated
     public int getCode() {
         return super.getCode();

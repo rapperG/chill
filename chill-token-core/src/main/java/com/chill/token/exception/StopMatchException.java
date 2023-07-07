@@ -1,13 +1,15 @@
 
 package com.chill.token.exception;
 
+import com.chill.token.exception.basic.TokenException;
+
 /**
  * 一个异常：代表停止路由匹配，进入 Controller （框架内部专属异常，一般情况下开发者无需关注）
  *
  * @author chill
- * @since 1.20.0
+ * @since 1.0
  */
-public class StopMatchException extends SaTokenException {
+public class StopMatchException extends TokenException {
 
     /**
      * 序列化版本号

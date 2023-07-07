@@ -1,7 +1,8 @@
 
 package com.chill.token.exception;
 
-import com.chill.token.util.SaFoxUtil;
+import com.chill.token.exception.basic.TokenException;
+import com.chill.token.util.ChillFoxUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,9 +11,9 @@ import java.util.List;
  * 一个异常：代表会话未能通过登录认证校验
  *
  * @author chill
- * @since 1.10.0
+ * @since 1.0
  */
-public class NotLoginException extends SaTokenException {
+public class NotLoginException extends TokenException {
 
     /**
      * 序列化版本号
@@ -79,7 +80,7 @@ public class NotLoginException extends SaTokenException {
      * 代表异常 token 的标志集合
      */
     public static final List<String> ABNORMAL_LIST =
-            Arrays.asList(NOT_TOKEN, INVALID_TOKEN, TOKEN_TIMEOUT, BE_REPLACED, KICK_OUT, TOKEN_FREEZE, NO_PREFIX);
+        Arrays.asList(NOT_TOKEN, INVALID_TOKEN, TOKEN_TIMEOUT, BE_REPLACED, KICK_OUT, TOKEN_FREEZE, NO_PREFIX);
 
 
     /**
@@ -134,7 +135,7 @@ public class NotLoginException extends SaTokenException {
      * @return 构建完毕的异常对象
      */
     public static NotLoginException newInstance(String loginType, String type, String message, String token) {
-        if (SaFoxUtil.isNotEmpty(token)) {
+        if (ChillFoxUtil.isNotEmpty(token)) {
             message = message + "：" + token;
         }
         return new NotLoginException(message, loginType, type);

@@ -5,7 +5,7 @@ package com.chill.token.fun;
  * lambda 表达式辅助封装：根据 Boolean 变量，决定是否执行一个函数
  *
  * @author chill
- * @since 1.13.0
+ * @since 1.0
  */
 public class IsRunFunction {
 
@@ -29,7 +29,7 @@ public class IsRunFunction {
      * @param function 函数
      * @return 对象自身
      */
-    public IsRunFunction exe(SaFunction function) {
+    public IsRunFunction exe(ChillFunction function) {
         if (isRun) {
             function.run();
         }
@@ -42,7 +42,7 @@ public class IsRunFunction {
      * @param function 函数
      * @return 对象自身
      */
-    public IsRunFunction noExe(SaFunction function) {
+    public IsRunFunction noExe(ChillFunction function) {
         if (!isRun) {
             function.run();
         }

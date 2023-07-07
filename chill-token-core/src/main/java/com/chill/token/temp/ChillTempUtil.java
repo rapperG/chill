@@ -1,0 +1,138 @@
+
+package com.chill.token.temp;
+
+import com.chill.token.ChillManager;
+
+/**
+ * Chill-Token 临时 token 验证模块 - 工具类
+ *
+ * <p>
+ * 有效期很短的一种token，一般用于一次性接口防盗用、短时间资源访问等业务场景
+ * </p>
+ *
+ * @author chill
+ * @since 1.0
+ */
+public class ChillTempUtil {
+
+    private ChillTempUtil() {
+    }
+
+    // -------- 创建
+
+    /**
+     * 为指定 value 创建一个临时 Token
+     *
+     * @param value   指定值
+     * @param timeout 有效期，单位：秒，-1 代表永久有效
+     * @return 生成的token
+     */
+    public static String createToken(Object value, long timeout) {
+        return ChillManager.getChillTempInterface().createToken(value, timeout);
+    }
+
+    /**
+     * 为指定 业务标识、指定 value 创建一个 Token
+     *
+     * @param service 业务标识
+     * @param value   指定值
+     * @param timeout 有效期，单位：秒，-1 代表永久有效
+     * @return 生成的token
+     */
+    public static String createToken(String service, Object value, long timeout) {
+        return ChillManager.getChillTempInterface().createToken(service, value, timeout);
+    }
+
+    // -------- 解析
+
+    /**
+     * 解析 Token 获取 value
+     *
+     * @param token 指定 Token
+     * @return /
+     */
+    public static Object parseToken(String token) {
+        return ChillManager.getChillTempInterface().parseToken(token);
+    }
+
+    /**
+     * 解析 Token 获取 value
+     *
+     * @param service 业务标识
+     * @param token   指定 Token
+     * @return /
+     */
+    public static Object parseToken(String service, String token) {
+        return ChillManager.getChillTempInterface().parseToken(service, token);
+    }
+
+    /**
+     * 解析 Token 获取 value，并转换为指定类型
+     *
+     * @param token 指定 Token
+     * @param cs    指定类型
+     * @param <T>   默认值的类型
+     * @return /
+     */
+    public static <T> T parseToken(String token, Class<T> cs) {
+        return ChillManager.getChillTempInterface().parseToken(token, cs);
+    }
+
+    /**
+     * 解析 Token 获取 value，并转换为指定类型
+     *
+     * @param service 业务标识
+     * @param token   指定 Token
+     * @param cs      指定类型
+     * @param <T>     默认值的类型
+     * @return /
+     */
+    public static <T> T parseToken(String service, String token, Class<T> cs) {
+        return ChillManager.getChillTempInterface().parseToken(service, token, cs);
+    }
+
+    /**
+     * 获取指定 Token 的剩余有效期，单位：秒
+     * <p> 返回值 -1 代表永久，-2 代表token无效
+     *
+     * @param token 指定 Token
+     * @return /
+     */
+    public static long getTimeout(String token) {
+        return ChillManager.getChillTempInterface().getTimeout(token);
+    }
+
+    /**
+     * 获取指定 业务标识、指定 Token 的剩余有效期，单位：秒
+     * <p> 返回值 -1 代表永久，-2 代表token无效
+     *
+     * @param service 业务标识
+     * @param token   指定 Token
+     * @return /
+     */
+    public static long getTimeout(String service, String token) {
+        return ChillManager.getChillTempInterface().getTimeout(service, token);
+    }
+
+    // -------- 删除
+
+    /**
+     * 删除一个 Token
+     *
+     * @param token 指定 Token
+     */
+    public static void deleteToken(String token) {
+        ChillManager.getChillTempInterface().deleteToken(token);
+    }
+
+    /**
+     * 删除一个 Token
+     *
+     * @param service 业务标识
+     * @param token   指定 Token
+     */
+    public static void deleteToken(String service, String token) {
+        ChillManager.getChillTempInterface().deleteToken(service, token);
+    }
+
+}
