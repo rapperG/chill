@@ -10,6 +10,7 @@ import com.chill.token.util.ChillFoxUtil;
 import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 /**
  * Session Model，会话作用域的读取值对象
@@ -236,15 +237,15 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
     /**
      * 此 Session 绑定的 Token 签名列表
      */
-    private List<ChillTokenSign> tokenSignList = new Vector<>();
+    private List<ChillTokenSign> tokenSigns = new Vector<>();
 
     /**
      * 写入此 Session 绑定的 Token 签名列表
      *
-     * @param tokenSignList Token 签名列表
+     * @param tokenSigns Token 签名列表
      */
-    public void setTokenSignList(List<ChillTokenSign> tokenSignList) {
-        this.tokenSignList = tokenSignList;
+    public void setTokenSigns(List<ChillTokenSign> tokenSigns) {
+        this.tokenSigns = tokenSigns;
     }
 
     /**
@@ -252,17 +253,17 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
      *
      * @return Token 签名列表
      */
-    public List<ChillTokenSign> getTokenSignList() {
-        return tokenSignList;
+    public List<ChillTokenSign> getTokenSigns() {
+        return tokenSigns;
     }
 
     /**
-     * 获取 Token 签名列表 的拷贝副本
+     * 获取 Token 签名列表 的拷贝副本(深拷贝)
      *
      * @return token签名列表
      */
-    public List<ChillTokenSign> tokenSignListCopy() {
-        return new ArrayList<>(tokenSignList);
+    public List<ChillTokenSign> tokenSignsDeepCopy() {
+        return new ArrayList<>(tokenSigns);
     }
 
     /**
@@ -274,17 +275,10 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
     public List<ChillTokenSign> getTokenSignListByDevice(String device) {
         // 返回全部
         if (device == null) {
-            return tokenSignListCopy();
+            return tokenSignsDeepCopy();
         }
         // 返回筛选后的
-        List<ChillTokenSign> tokenSignList = tokenSignListCopy();
-        List<ChillTokenSign> list = new ArrayList<>();
-        for (ChillTokenSign tokenSign : tokenSignList) {
-            if (ChillFoxUtil.equals(tokenSign.getDevice(), device)) {
-                list.add(tokenSign);
-            }
-        }
-        return list;
+        return tokenSignsDeepCopy().stream().filter(tokenSign -> Objects.equals(tokenSign.getDevice(), device)).collect(Collectors.toList());
     }
 
     /**
@@ -295,14 +289,11 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
      */
     public List<String> getTokenValueListByDevice(String device) {
         // 遍历解析，按照设备类型进行筛选
-        List<ChillTokenSign> tokenSignList = tokenSignListCopy();
-        List<String> tokenValueList = new ArrayList<>();
-        for (ChillTokenSign tokenSign : tokenSignList) {
-            if (device == null || tokenSign.getDevice().equals(device)) {
-                tokenValueList.add(tokenSign.getValue());
-            }
-        }
-        return tokenValueList;
+
+        return tokenSignsDeepCopy().stream().
+            filter(tokenSign -> device == null || tokenSign.getDevice().equals(device)).
+            map(ChillTokenSign::getValue).
+            collect(Collectors.toList());
     }
 
     /**
@@ -312,12 +303,10 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
      * @return 查找到的 ChillTokenSign
      */
     public ChillTokenSign getTokenSign(String tokenValue) {
-        for (ChillTokenSign tokenSign : tokenSignListCopy()) {
-            if (ChillFoxUtil.equals(tokenSign.getValue(), tokenValue)) {
-                return tokenSign;
-            }
-        }
-        return null;
+        return tokenSignsDeepCopy().stream().
+            filter(tokenSign -> ChillFoxUtil.equals(tokenSign.getValue(), tokenValue)).
+            findFirst().
+            orElse(null);
     }
 
     /**
@@ -329,7 +318,7 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
         // 根据 tokenValue 值查重，如果不存在，则添加
         ChillTokenSign oldTokenSign = getTokenSign(tokenSign.getValue());
         if (oldTokenSign == null) {
-            tokenSignList.add(tokenSign);
+            tokenSigns.add(tokenSign);
             update();
         } else {
             // 如果存在，则更新
@@ -358,7 +347,7 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
      */
     public void removeTokenSign(String tokenValue) {
         ChillTokenSign tokenSign = getTokenSign(tokenValue);
-        if (tokenSignList.remove(tokenSign)) {
+        if (tokenSigns.remove(tokenSign)) {
             update();
         }
     }
@@ -386,7 +375,7 @@ public class ChillSession implements ChillSetValueInterface, Serializable {
      * 当Session上的tokenSign数量为零时，注销会话
      */
     public void logoutByTokenSignCountToZero() {
-        if (tokenSignList.size() == 0) {
+        if (tokenSigns.size() == 0) {
             logout();
         }
     }

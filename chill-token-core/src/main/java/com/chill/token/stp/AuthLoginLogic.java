@@ -217,6 +217,29 @@ public class AuthLoginLogic {
         storage.set(ChillTokenConstants.JUST_CREATED_NOT_PREFIX, tokenValue);
     }
 
+//    /**
+//     * 将 token 写入到当前请求的 Storage 存储器里
+//     *
+//     * @param tokenValue 要保存的 token 值
+//     */
+//    public void setTokenValueToStorage(String tokenValue) {
+//        // 1、获取当前请求的 Storage 存储器
+//        ChillStorage storage = ChillHolder.getStorage();
+//
+//        // 2、保存 token
+//        //	- 如果没有配置前缀模式，直接保存
+//        // 	- 如果配置了前缀模式，则拼接上前缀保存
+//        String tokenPrefix = getConfigOrGlobal().getTokenPrefix();
+//        if (ChillFoxUtil.isEmpty(tokenPrefix)) {
+//            storage.set(splicingKeyJustCreatedSave(), tokenValue);
+//        } else {
+//            storage.set(splicingKeyJustCreatedSave(), tokenPrefix + ChillTokenConstants.TOKEN_CONNECTOR_CHAT + tokenValue);
+//        }
+//
+//        // 3、以无前缀的方式再写入一次
+//        storage.set(ChillTokenConstants.JUST_CREATED_NOT_PREFIX, tokenValue);
+//    }
+
     /**
      * 将 token 写入到当前会话的 Cookie 里
      *
@@ -527,12 +550,8 @@ public class AuthLoginLogic {
         return ChillStrategy.INSTANCE.generateUniqueToken.execute(
             "token",
             getConfigOfMaxTryTimes(),
-            () -> {
-                return createTokenValue(id, loginModel.getDeviceOrDefault(), loginModel.getTimeout(), loginModel.getExtraData());
-            },
-            tokenValue -> {
-                return getLoginIdNotHandle(tokenValue) == null;
-            }
+            () -> createTokenValue(id, loginModel.getDeviceOrDefault(), loginModel.getTimeout(), loginModel.getExtraData()),
+            tokenValue -> getLoginIdNotHandle(tokenValue) == null
         );
     }
 
@@ -2078,7 +2097,7 @@ public class AuthLoginLogic {
         }
 
         // 5、遍历 Account-Session 上的客户端 token 列表，寻找当前 token 对应的设备类型
-        List<ChillTokenSign> tokenSignList = session.tokenSignListCopy();
+        List<ChillTokenSign> tokenSignList = session.tokenSignsDeepCopy();
         for (ChillTokenSign tokenSign : tokenSignList) {
             if (tokenSign.getValue().equals(tokenValue)) {
                 return tokenSign.getDevice();

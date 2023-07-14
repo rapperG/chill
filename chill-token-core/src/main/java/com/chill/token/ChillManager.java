@@ -46,7 +46,7 @@ public class ChillManager {
 
         // 打印 banner
         if (config != null && config.getIsPrint()) {
-            ChillFoxUtil.printSaToken();
+            ChillFoxUtil.printBanner();
         }
 
         // 如果此 config 对象没有配置 isColorLog 的值，则框架为它自动判断一下

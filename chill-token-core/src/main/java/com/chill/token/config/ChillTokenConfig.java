@@ -22,7 +22,7 @@ public class ChillTokenConfig implements Serializable {
     /**
      * token 名称 （同时也是： cookie 名称、提交 token 时参数的名称、存储 token 时的 key 前缀）
      */
-    private String tokenName = "chill-token";
+    private String tokenName = "authorized-token";
 
     /**
      * token 有效期（单位：秒） 默认30天，-1 代表永久有效
@@ -83,7 +83,7 @@ public class ChillTokenConfig implements Serializable {
     /**
      * token 风格（默认可取值：uuid、simple-uuid、random-32、random-64、random-128、tik）
      */
-    private String tokenStyle = "uuid";
+    private String tokenStyle = "tik";
 
     /**
      * 默认 ChillTokenDao 实现类中，每次清理过期数据间隔的时间（单位: 秒），默认值30秒，设置为 -1 代表不启动定时清理

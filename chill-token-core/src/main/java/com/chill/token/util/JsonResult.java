@@ -26,12 +26,27 @@ public class JsonResult<T> implements Serializable {
     public static final boolean REQUEST_FAIL = false;
     public static final String DEFAULT_ERROR_CODE = "500";
     public static final String DEFAULT_SUCCESS_CODE = "200";
+    /**
+     * 成功与否
+     */
     private Boolean success;
+
+    /**
+     * 数据
+     */
     private T data;
+
+    /**
+     * 响应编码 成功：200 失败：500或其他
+     */
     private String code;
+
+    /**
+     * 消息体 通常是业务异常消息
+     */
     private String msg;
 
-    public JsonResult() {
+    private JsonResult() {
     }
 
     public JsonResult(Boolean success, T data, String code, String message) {
@@ -42,19 +57,19 @@ public class JsonResult<T> implements Serializable {
     }
 
     public static <T> JsonResult<T> buildSuccess() {
-        return new JsonResult(true, null, DEFAULT_SUCCESS_CODE, null);
+        return new JsonResult<>(REQUEST_SUCCESS, null, DEFAULT_SUCCESS_CODE, null);
     }
 
     public static <T> JsonResult<T> buildSuccess(T data) {
-        return new JsonResult(true, data, DEFAULT_SUCCESS_CODE, null);
+        return new JsonResult<>(REQUEST_SUCCESS, data, DEFAULT_SUCCESS_CODE, null);
     }
 
     public static <T> JsonResult<T> buildError(String errorMsg) {
-        return new JsonResult(false, (Object) null, DEFAULT_ERROR_CODE, errorMsg);
+        return new JsonResult<>(REQUEST_FAIL, null, DEFAULT_ERROR_CODE, errorMsg);
     }
 
     public static <T> JsonResult<T> buildError(String errorCode, String errorMsg) {
-        return new JsonResult(false, (Object) null, errorCode, errorMsg);
+        return new JsonResult<>(REQUEST_FAIL, null, errorCode, errorMsg);
     }
 
 
@@ -93,6 +108,7 @@ public class JsonResult<T> implements Serializable {
     @Override
     public String toString() {
         return "{"
+            + "\"success\": " + this.getSuccess()
             + "\"code\": " + this.getCode()
             + ", \"msg\": " + transValue(this.getMsg())
             + ", \"data\": " + transValue(this.getData())

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.chill.token.ChillBeanInject,\
+com.chill.token.ChillBeanRegister
